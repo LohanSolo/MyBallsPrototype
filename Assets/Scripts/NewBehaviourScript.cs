@@ -27,11 +27,16 @@ public class NewBehaviourScript : MonoBehaviour {
         vel_x = Input.GetAxis("Horizontal");
         if (Input.GetButton("Jump") && rb.velocity.y == 0)
         {
-            rb.velocity = new Vector2(vel_x, max_speed_y);
-            animator.SetTrigger("Jump");
+            rb.velocity = new Vector2(vel_x, max_speed_y);            
+        }
+        if (System.Math.Abs(rb.velocity.y)>0)
+        {
+            animator.SetBool("Jump", true);
+        }else
+        {
+            animator.SetBool("Jump", false);
         }
         animator.SetFloat( "Velocity", System.Math.Abs(vel_x));
-        rb.velocity = new Vector2(vel_x * max_speed_x, rb.velocity.y);
-        
+        rb.velocity = new Vector2(vel_x * max_speed_x, rb.velocity.y);        
     }
 }
